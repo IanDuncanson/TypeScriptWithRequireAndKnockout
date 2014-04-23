@@ -1,0 +1,16 @@
+﻿{
+    "Framework": "mocha",
+    "MochaInterface": "qunit",
+    "TestHarnessReferenceMode": "AMD",
+    "TestHarnessLocationMode": "SettingsFileAdjacent",
+    "AMDBasePath": "../src",
+	"References" : [
+        {"Path": "libs/require.js" }, 
+        {"Path": "TestConfig.js" },
+        {"Path": "libs/chai.js", "IsTestFrameworkFile": "true" },
+        {"Path": "libs/sinon.js", "IsTestFrameworkFile": "true" }
+    ],
+    "Tests" : [
+		{"Path": "tests", "Include": "*.js", "Exclude": "*.ts"}
+    ]
+}

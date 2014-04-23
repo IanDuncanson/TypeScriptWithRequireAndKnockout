@@ -9,7 +9,7 @@
     <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
     <DebugType>full</DebugType>
     <DebugSymbols>true</DebugSymbols>
-    <TypeScriptToolsVersion>0.9</TypeScriptToolsVersion>
+    <TypeScriptToolsVersion>1.0</TypeScriptToolsVersion>
     <UseIISExpress>true</UseIISExpress>
     <IISExpressSSLPort />
     <IISExpressAnonymousAuthentication />
@@ -17,20 +17,37 @@
     <IISExpressUseClassicPipelineMode />
   </PropertyGroup>
   <ItemGroup>
-    <Content Include="app.css" />
-    <TypeScriptCompile Include="AppConfig.ts" />
-    <Content Include="default.htm" />
-    <Content Include="libs\knockout-3.1.0.js" />
-    <Content Include="libs\knockout-es5.js" />
-    <Content Include="libs\require.js" />
-    <Content Include="typings\knockout.d.ts" />
-    <Content Include="typings\knockout.es5.d.ts" />
-    <Content Include="typings\require.d.ts" />
-    <TypeScriptCompile Include="ViewModels\AppViewModel.ts" />
+    <Content Include="build\build.js" />
+    <Content Include="build\r.js" />
+    <Content Include="src\app.css" />
+    <TypeScriptCompile Include="src\AppMain.ts" />
+    <None Include="src\default.htm">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <TypeScriptCompile Include="src\Interfaces\ILogin.ts" />
+    <Content Include="src\libs\knockout.js" />
+    <TypeScriptCompile Include="src\ViewModels\LoginViewModel.ts" />
+    <Content Include="Unit Testing\libs\chai.js" />
+    <Content Include="src\libs\domReady.js" />
+    <Content Include="src\libs\require.js" />
+    <TypeScriptCompile Include="Unit Testing\tests\ViewModelTests\LoginViewModelTests.ts" />
+    <Content Include="Unit Testing\libs\knockout.js" />
+    <Content Include="Unit Testing\typings\require.d.ts" />
+    <Content Include="Unit Testing\libs\require.js" />
+    <Content Include="Unit Testing\chutzpah.json" />
+    <Content Include="Unit Testing\libs\sinon.js" />
+    <Content Include="Unit Testing\TestConfig.js" />
+    <Content Include="Unit Testing\typings\chai.d.ts" />
+    <Content Include="src\typings\knockout.d.ts" />
+    <Content Include="src\typings\knockout.es5.d.ts" />
+    <Content Include="Unit Testing\typings\mocha.d.ts" />
+    <Content Include="src\typings\require.d.ts" />
+    <TypeScriptCompile Include="src\ViewModels\AppViewModel.ts" />
+    <Content Include="Unit Testing\typings\sinon.d.ts" />
     <Content Include="web.config" />
   </ItemGroup>
   <ItemGroup>
-    <TypeScriptCompile Include="App.ts" />
+    <TypeScriptCompile Include="src\App.ts" />
   </ItemGroup>
   <ItemGroup>
     <None Include="web.Debug.config">
@@ -40,6 +57,7 @@
       <DependentUpon>web.config</DependentUpon>
     </None>
   </ItemGroup>
+  <ItemGroup />
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
     <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
@@ -55,7 +73,7 @@
         <WebProjectProperties>
           <UseIIS>True</UseIIS>
           <AutoAssignPort>True</AutoAssignPort>
-          <DevelopmentServerPort>0</DevelopmentServerPort>
+          <DevelopmentServerPort>63150</DevelopmentServerPort>
           <DevelopmentServerVPath>/</DevelopmentServerVPath>
           <IISUrl>http://localhost:59142/</IISUrl>
           <NTLMAuthentication>False</NTLMAuthentication>
@@ -80,4 +98,7 @@
     <TypeScriptModuleKind>AMD</TypeScriptModuleKind>
   </PropertyGroup>
   <Import Project="$(VSToolsPath)\TypeScript\Microsoft.TypeScript.targets" Condition="Exists('$(VSToolsPath)\TypeScript\Microsoft.TypeScript.targets')" />
+  <PropertyGroup>
+    <PostBuildEvent>node "$(ProjectDir)build\r.js" -o "$(ProjectDir)build\build.js"</PostBuildEvent>
+  </PropertyGroup>
 </Project>
